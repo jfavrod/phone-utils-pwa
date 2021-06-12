@@ -1,12 +1,12 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
 
-import Main from './components/Main';
+import MainMenu from './components/MainMenu';
 
 const App = () => {
   return (
     <Container>
-      <Main />
+      <MainMenu />
     </Container>
   );
 }
