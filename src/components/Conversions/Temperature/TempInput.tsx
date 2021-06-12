@@ -18,7 +18,6 @@ const TempInput = (props: ITempInputProps) => {
               type="number"
               style={{ fontSize: 28, height: 100 }}
               onChange={(event) => {
-                console.log('value', event.target.value);
                 setTmp(Number(event.target.value));
               }}
               value={tmp}

@@ -14,11 +14,11 @@ const Temp = () => {
   const setTemps = (corf: string, tmp: number) => {
     if (new RegExp('C').test(corf.toUpperCase())) {
       setCtmp(tmp);
-      setFtmp( (tmp * 9/5) + 32 );
+      setFtmp( Number(((tmp * 9/5) + 32).toFixed(2)) );
     }
     else {
       setFtmp(tmp);
-      setCtmp( (tmp - 32) * 5/9 );
+      setCtmp( Number(((tmp - 32) * 5/9).toFixed(2)) );
     }
   };
 
