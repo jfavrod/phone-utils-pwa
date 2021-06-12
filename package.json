@@ -1,6 +1,7 @@
 {
   "name": "phone-utils-pwa",
-  "version": "0.1.0",
+  "description": "An utilities PWA for phones",
+  "version": "0.0.0",
   "private": true,
   "main": "start.js",
   "scripts": {
@@ -44,6 +45,12 @@
     "workbox-routing": "^5.1.4",
     "workbox-strategies": "^5.1.4",
     "workbox-streams": "^5.1.4"
+  },
+  "license": "SEE LICENSE in LICENSE.txt",
+  "author": {
+    "email": "mail@jasonfavrod.com",
+    "name": "Jason Favrod",
+    "url": "https://jasonfavrod.com"
   },
   "eslintConfig": {
     "extends": [
