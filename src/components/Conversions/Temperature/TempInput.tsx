@@ -15,17 +15,20 @@ const TempInput = (props: ITempInputProps) => {
         <Grid container>
           <Grid item>
             <Input
-              type="number"
-              style={{ fontSize: 28, height: 100 }}
+              inputProps={{ style: { textAlign: 'center' } }}
               onChange={(event) => {
                 setTmp(Number(event.target.value));
               }}
+              style={{ fontSize: 28, height: 100 }}
+              type="number"
               value={tmp}
             />
           </Grid>
 
-          <Grid item>
-            &#176;{corf.toUpperCase()}
+          <Grid item style={{ width: '100%' }}>
+            <div style={{ fontWeight: 'bold', textAlign: 'center' }}>
+              <p>&#176;{corf.toUpperCase()}</p>
+            </div>
           </Grid>
         </Grid>
       </Paper>

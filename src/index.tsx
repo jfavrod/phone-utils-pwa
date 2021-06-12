@@ -5,6 +5,8 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
+document.body.style.backgroundColor = '#1e1e1e';
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
