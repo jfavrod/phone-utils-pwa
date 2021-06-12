@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Phone Utils",
+  "name": "phone-utils-pwa",
   "icons": [
     {
       "src": "favicon.ico",
