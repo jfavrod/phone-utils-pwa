@@ -82,11 +82,11 @@ const MainMenu = () => {
         { getMenuItems() }
 
         <Switch>
-          <Route path="/convert/tmp">
+          <Route exact path="/convert/tmp">
             <Temp />
           </Route>
 
-          <Route path="/weather">
+          <Route exact path="/weather">
             <Weather />
           </Route>
         </Switch>

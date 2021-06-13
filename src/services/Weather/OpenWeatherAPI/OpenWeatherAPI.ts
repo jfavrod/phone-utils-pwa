@@ -19,6 +19,7 @@ export default class OpenWeatherAPI implements IWeatherService {
     public async getCurrentConditions(place: IPlace): Promise<ICurrentConditions> {
         const cc = {} as ICurrentConditions;
         let url = `//${this.baseUrl}/weather?appid=${this.key}&units=metric`;
+        console.log('getting current conditions');
 
         try {
             if ('cityName' in place) {

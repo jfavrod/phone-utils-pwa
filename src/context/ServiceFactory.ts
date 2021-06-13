@@ -11,7 +11,7 @@ export default class ServiceFactory {
             const conf = Config.getServiceConfig('OpenWeatherAPI') as IOpenWeatherAPIConfig;
 
             ServiceFactory.weatherSvc = new OpenWeatherAPI(
-                process.env.OPEN_WEATHER_API_KEY || '',
+                process.env.OPEN_WEATHER_API_KEY || 'NO_KEY',
                 conf.url,
             );
         }

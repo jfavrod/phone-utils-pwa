@@ -15,7 +15,7 @@ const MenuItem = (props: IMenuItemProps) => {
     <Grid item xs={ (!varient || varient === 'full') ? 12 : 6}>
       <Paper className={classes.paper}>
         <Button onClick={() => setPath(path)}>
-          <Link to={path}>{ value }</Link>
+          <Link className={classes.btnlink} to={path}>{ value }</Link>
         </Button>
       </Paper>
     </Grid>
