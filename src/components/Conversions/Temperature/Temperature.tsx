@@ -8,17 +8,17 @@ import styles from '../styles';
 const Temp = () => {
   const classes = styles();
 
-  const [ ctmp, setCtmp ] = useState(0);
-  const [ ftmp, setFtmp ] = useState(32);
+  const [ ctemp, setCtemp ] = useState(0);
+  const [ ftemp, setFtemp ] = useState(32);
 
-  const setTemps = (corf: string, tmp: number) => {
+  const setTemps = (corf: string, temp: number) => {
     if (new RegExp('C').test(corf.toUpperCase())) {
-      setCtmp(tmp);
-      setFtmp( Number(((tmp * 9/5) + 32).toFixed(2)) );
+      setCtemp(temp);
+      setFtemp( Number(((temp * 9/5) + 32).toFixed(2)) );
     }
     else {
-      setFtmp(tmp);
-      setCtmp( Number(((tmp - 32) * 5/9).toFixed(2)) );
+      setFtemp(temp);
+      setCtemp( Number(((temp - 32) * 5/9).toFixed(2)) );
     }
   };
 
@@ -26,8 +26,8 @@ const Temp = () => {
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={1} />
-        <TempInput corf="c" setTmp={(tmp) => setTemps('c', tmp)} tmp={ctmp} />
-        <TempInput corf="f" setTmp={(tmp) => setTemps('f', tmp)} tmp={ftmp} />
+        <TempInput corf="c" setTmp={(temp) => setTemps('c', temp)} temp={ctemp} />
+        <TempInput corf="f" setTmp={(temp) => setTemps('f', temp)} temp={ftemp} />
       </Grid>
     </div>
   );

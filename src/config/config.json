@@ -1,0 +1,9 @@
+{
+    "services": {
+        "OpenWeatherAPI": {
+            "alt": "//api.openweathermap.org/data/2.5",
+            "key": "2433081da14f153d81ad25fc517485f8",
+            "url": "//localhost:3001"
+        }
+    }
+}

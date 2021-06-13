@@ -9,6 +9,7 @@ import {
 
 import { Temp } from '../Conversions';
 import MenuItem from './MenuItem';
+import Weather from '../Weather';
 
 import styles from './styles';
 
@@ -33,6 +34,12 @@ const MainMenu = () => {
               path="/convert"
               onClick={() => setPath('/convert')}
               value="Conversions"
+            />
+
+            <MenuItem
+              path="/weather"
+              onClick={() => setPath('/weather')}
+              value="Weather"
             />
           </Grid>
         );
@@ -77,6 +84,10 @@ const MainMenu = () => {
         <Switch>
           <Route path="/convert/tmp">
             <Temp />
+          </Route>
+
+          <Route path="/weather">
+            <Weather />
           </Route>
         </Switch>
       </BrowserRouter>

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Grid, Input, Paper } from '@material-ui/core';
 
-import styles from '../styles';
+import styles from './styles';
 
-import { ITempInputProps } from './interfaces';
+import { IConverionInputProps } from './interfaces';
 
-const TempInput = (props: ITempInputProps) => {
-  const { corf, temp, setTmp } = props;
+const ConversionInput = (props: IConverionInputProps) => {
+  const { label, onValueChange, value } = props;
   const classes = styles();
 
   return (<>
@@ -17,17 +17,17 @@ const TempInput = (props: ITempInputProps) => {
             <Input
               inputProps={{ style: { textAlign: 'center' } }}
               onChange={(event) => {
-                setTmp(Number(event.target.value));
+                onValueChange(Number(event.target.value));
               }}
               style={{ fontSize: 28, height: 100 }}
               type="number"
-              value={temp}
+              value={value}
             />
           </Grid>
 
           <Grid item style={{ width: '100%' }}>
             <div style={{ fontWeight: 'bold', textAlign: 'center' }}>
-              <p>&#176;{corf.toUpperCase()}</p>
+              <p>{ label }</p>
             </div>
           </Grid>
         </Grid>
@@ -36,4 +36,4 @@ const TempInput = (props: ITempInputProps) => {
   </>);
 };
 
-export default TempInput;
+export default ConversionInput;

@@ -1,5 +1,5 @@
 export interface ITempInputProps {
     corf: 'c' | 'f';
-    tmp: number;
+    temp: number;
     setTmp(temp: number): void;
 }
