@@ -1,8 +1,10 @@
 {
     "services": {
         "OpenWeatherAPI": {
-            "alt": "//api.openweathermap.org/data/2.5",
-            "url": "//localhost:3001"
+            "urls": {
+                "prod": "//api.openweathermap.org/data/2.5",
+                "dev": "//localhost:3001"
+            }
         }
     }
 }

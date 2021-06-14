@@ -39,9 +39,13 @@ export interface IMain {
 }
 
 export interface IOpenWeatherAPIConfig {
-    [index: string]: string;
+    [index: string]: string | object;
     key: string;
-    url: string;
+    urls: {
+        [env: string]: string;
+        dev: string;
+        prod: string;
+    };
 }
 
 export interface IWeather {

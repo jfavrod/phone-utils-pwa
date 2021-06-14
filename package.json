@@ -14,12 +14,13 @@
     "dev": "react-scripts start",
     "docker:build": "echo \"not implemented!\"",
     "docker:down": "echo \"docker container autoremoved on close.\",",
-    "docker:up": "docker run --rm -it -v ${PWD}/:/app -w /app -p 8080:3000 node:12-alpine npm run docker:up:cmd",
+    "docker:up": "docker run --rm -v ${PWD}/:/app -w /app -p 8080:3000 node:12-alpine npm run docker:up:cmd",
     "docker:up:cmd": "npm install && npm run dev",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "app-root-path": "^3.0.0",
     "serve": "^12.0.0"
   },
   "devDependencies": {
@@ -31,13 +32,14 @@
     "@types/node": "^12.20.15",
     "@types/react": "^16.14.8",
     "@types/react-dom": "^16.9.13",
+    "@types/react-gauge-chart": "^0.3.0",
     "@types/react-router-dom": "^5.1.7",
     "npm-run-all": "^4.1.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-gauge-chart": "^0.3.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "react-thermometer-component": "^1.0.1",
     "typescript": "^4.3.2",
     "web-vitals": "^0.2.4",
     "workbox-background-sync": "^5.1.4",
