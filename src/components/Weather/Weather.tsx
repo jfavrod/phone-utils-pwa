@@ -7,6 +7,7 @@ import { ICurrentConditions } from '../../services/Weather/interfaces';
 import Thermometer from './Thermometer';
 import Condition from './Condition';
 import { IWeather } from '../../services/Weather/OpenWeatherAPI/interfaces';
+import Humidity from './Humidity';
 
 const Weather = () => {
   const [ currentWeather, setCurrentWeather ] = useState<ICurrentConditions>();
@@ -34,10 +35,14 @@ const Weather = () => {
 
       <Grid item xs={12}>
         <Grid container spacing={2}>
-          <Condition
-            condition={currentWeather?.description as IWeather["description"]}
-            variant='half'
-          />
+          <Grid item xs={6}>
+            <Humidity
+              label="Humidity"
+              percent={currentWeather?.humidity || 0}
+            />
+
+            <Condition condition={currentWeather?.description as IWeather["description"]}/>
+          </Grid>
 
           <Grid item xs={6}>
             <Grid container>
