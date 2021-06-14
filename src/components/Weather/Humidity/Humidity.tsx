@@ -17,7 +17,7 @@ const Humidity = (props: IHumidityProps) => {
           colors={[
             '#ce0003',
             '#ffff00',
-            '#00b91e',
+            '#b3ff00',
             '#117f01',
             '#b3ff00',
             '#ffff00',
