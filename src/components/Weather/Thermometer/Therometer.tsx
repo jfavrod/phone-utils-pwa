@@ -15,9 +15,9 @@ const Thermometer = (props: IThermometerProps) => {
         <GaugeChart
           formatTextValue={() => `${Math.round(temp)} °`}
           colors={[
-            '#0715ab',
-            '#0062ff',
-            '#00ffff',
+            '#F0F0F0',
+            '#e6f7ff',
+            '#b3e6ff',
             '#117f01',
             '#00b91e',
             '#b3ff00',
