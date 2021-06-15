@@ -1,4 +1,12 @@
+import React from 'react';
 import { IListProps } from '../../services/Lists';
+
+export interface IFeedbackProps {
+    mesg: string;
+    open: boolean;
+    severity: 'success' | 'error' | 'warning' | 'info';
+    onClose?(): void;
+}
 
 export interface IListEditorProps {
     data?: IListProps;
@@ -15,6 +23,7 @@ export interface IListsProps {
 }
 
 export interface IListetteProps {
+    children?: React.ReactNode;
     data: IListProps;
     onClick(list: IListProps): void;
 }

@@ -58,7 +58,13 @@ const ListEditor = (props: IListEditorProps) => {
     }
 
     return;
-  }
+  };
+
+  const handleTitleChange = (event: ChangeEvent) => {
+    const newList = JSON.parse(JSON.stringify(list)) as IListProps;
+    newList.title = (event.target as HTMLInputElement).value;
+    setList(newList);
+  };
 
   useEffect(() => {
     if (props.data) setList(
@@ -70,60 +76,33 @@ const ListEditor = (props: IListEditorProps) => {
     <Grid item xs={12}>
       <Paper className={classes.paper}>
         <form className={classes.listEditorRoot}>
-          {
-            list.id ?
-            <TextField
-              id={`${list.id}-title`}
-              label="Title"
-              value={list.title}
-            />
-            :
-            <TextField
-              id={`title`}
-              label="Title"
-              value={list.title}
-            />
-          }
+          <TextField
+            id={`${list.id}-title`}
+            label="Title"
+            onChange={handleTitleChange}
+            value={list.title}
+          />
 
           <p>Items</p>
           { 
             list.items.map((item, i) => (
-              list.id ?
-                <Grid key={`${list.id}-item-${i}`} container>
-                  <Grid item xs={11}>
-                    <TextField
-                      id={`${list.id}-item-${i}`}
-                      onChange={handleItemValueChange}
-                      value={item}
-                    />
-                  </Grid>
-
-                  <Grid item xs={1}>
-                    <TextField
-                      onClick={handleRemoveItem}
-                      id={`${list.id}-item-${i}`}
-                      value="x"
-                    />
-                  </Grid>
+              <Grid key={`item-${i}`} container>
+                <Grid item xs={11}>
+                  <TextField
+                    id={`item-${i}`}
+                    onChange={handleItemValueChange}
+                    value={item}
+                  />
                 </Grid>
-              :
-                <Grid key={`${list.id}-item-${i}`} container>
-                  <Grid item xs={11}>
-                    <TextField
-                      key={`item-${i}`}
-                      onChange={handleItemValueChange}
-                      value={item}
-                    />
-                  </Grid>
 
-                  <Grid item xs={1}>
-                    <TextField
-                      id={`${list.id}-item-${i}`}
-                      onClick={handleRemoveItem}
-                      value="x"
-                    />
-                  </Grid>
+                <Grid item xs={1}>
+                  <TextField
+                    id={`item-${i}`}
+                    onClick={handleRemoveItem}
+                    value="x"
+                  />
                 </Grid>
+              </Grid>
             ))
           }
 

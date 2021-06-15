@@ -32,11 +32,13 @@ export default class ListsService implements IListsService {
             }
             return ({
                 error: false,
+                message: '',
                 success: false, 
             });
         })
-        .catch(() => ({
+        .catch((err) => ({
             error: true,
+            message: err.message,
             success: false,
         }));
     }
