@@ -1,12 +1,18 @@
+export interface IListEditorProps {
+    data?: IListProps;
+    cancelAction?(): void;
+    saveAction?(): void;
+}
+
 export interface IListPropsData {
     data: IListProps;
 }
 
 export interface IListProps {
-    createdAt: number;
-    id: string;
+    createdAt?: number;
+    id?: string;
     items: string[];
-    modifiedAt: number;
+    modifiedAt?: number;
     title: string;
 }
 

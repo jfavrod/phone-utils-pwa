@@ -20,7 +20,7 @@ import styles from './styles';
 const MainMenu = () => {
   const classes = styles();
 
-  const [ path, setPath ] = useState(window.location.pathname);
+  const [ path, setPath ] = useState('/');
 
   const getMenuItems = () => {
     if (path === '/' || path === '') {
@@ -60,13 +60,13 @@ const MainMenu = () => {
             <ConvertMenu navigate={setPath} />
           </Route>
 
+          <Route path="/lists">
+            <Lists navigate={setPath} />
+          </Route>
+
           <Route exact path="/weather">
             <WeatherMenu navigate={setPath} />
             <Weather />
-          </Route>
-
-          <Route path="/lists">
-            <Lists navigate={(path) => setPath(path)} />
           </Route>
         </Switch>
       </BrowserRouter>

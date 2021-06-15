@@ -6,12 +6,11 @@ import { Grid, Paper } from '@material-ui/core'
 import { IListetteProps } from './interfaces';
 
 const Listette = (props: IListetteProps) => {
-  const { id, items, title } = props.data;
+  const { items, title } = props.data;
 
   const classes = styles();
 
   const handleClick = () => {
-    window.location.pathname = `/lists/${id}`;
     props.onClick(props.data);
   };
 
