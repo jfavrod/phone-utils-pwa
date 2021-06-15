@@ -8,7 +8,7 @@ import style from './styles';
 import { IMenuItemProps } from './interfaces';
 
 const MenuItem = (props: IMenuItemProps) => {
-  const { path, onClick: setPath, value, varient } = props;
+  const { path, onClick: setPath, value, variant: varient } = props;
   const classes = style();
 
   return (

@@ -3,3 +3,7 @@ export interface IConverionInputProps {
     value: number;
     onValueChange(newValue: number): void;
 }
+
+export interface IConversionMenuProps {
+    navigate(path: string): void;
+}
