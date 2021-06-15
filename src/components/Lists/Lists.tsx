@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 import { Button, Grid, Paper } from '@material-ui/core';
 
-import ListsService from '../../services/Lists/ListsService';
-import { IListProps, IListsProps } from './interfaces';
+import ListsService, { IListProps } from '../../services/Lists';
+import { IListsProps } from './interfaces';
 
 import ListEditor from './ListEditor';
 import Listette from './Listette';
@@ -32,10 +32,20 @@ const Lists = (props: IListsProps) => {
     });
   };
 
+  const saveList = (list: IListProps) => {
+    const listSvc = new ListsService();
+    listSvc.update(list)
+      .then((res) => {
+        console.log('res', res);
+      });
+  };
+
   useEffect(() => {
     const listSvc = new ListsService();
-    listSvc.getAll().then((data) => {
-      setData(data);
+    listSvc.getAll().then((res) => {
+      if (res.data) {
+        setData(res.data);
+      }
     });
   }, []);
 
@@ -60,6 +70,7 @@ const Lists = (props: IListsProps) => {
         <ListEditor
           cancelAction={() => setSelectedList(null)}
           data={selectedList}
+          saveAction={saveList}
         />
         :
         getListetts()

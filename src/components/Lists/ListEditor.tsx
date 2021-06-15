@@ -1,4 +1,4 @@
-import React, { useEffect, useState, MouseEvent } from 'react';
+import React, { useEffect, useState, MouseEvent, ChangeEvent } from 'react';
 
 import {
   Button,
@@ -7,7 +7,8 @@ import {
   TextField,
 } from '@material-ui/core';
 
-import { IListEditorProps, IListProps } from './interfaces';
+import { IListProps } from '../../services/Lists';
+import { IListEditorProps } from './interfaces';
 import styles from './styles';
 
 const ListEditor = (props: IListEditorProps) => {
@@ -18,24 +19,44 @@ const ListEditor = (props: IListEditorProps) => {
 
   const classes = styles();
 
+  const getItemIndex = (id: string): number => {
+    const idx = Number(id.match(/-\d+$/)?.pop()?.replace('-', ''));
+
+    if (!isNaN(idx)) {
+      return idx;
+    }
+    return -1;
+  }
+
   const handleAddItem = () => {
     const newList = JSON.parse(JSON.stringify(list)) as IListProps;
     newList.items.push('');
     setList(newList);
   };
 
+  const handleItemValueChange = (event: ChangeEvent) => {
+    const newList = JSON.parse(JSON.stringify(list)) as IListProps;
+    const target = event.target as HTMLInputElement;
+    const idx = getItemIndex(target.id);
+
+    newList.items[idx] = target.value;
+    setList(newList);
+  };
+
   const handleRemoveItem = (event: MouseEvent) => {
     const newList = JSON.parse(JSON.stringify(list)) as IListProps;
-    const itemId = (event.target as HTMLElement).id;
-    const idx = Number(itemId.match(/-\d+$/)?.pop()?.replace('-', ''));
-
-    if (!isNaN(idx)) {
-      newList.items.splice(idx, 1);
-      setList(newList);
-    }
+    const idx = getItemIndex((event.target as HTMLElement).id);
+    newList.items.splice(idx, 1);
+    setList(newList);
   };
 
   const handleSaveAction = (event: MouseEvent) => {
+    const newList = JSON.parse(JSON.stringify(list)) as IListProps;
+
+    if (props.saveAction) {
+      props.saveAction(newList);
+    }
+
     return;
   }
 
@@ -51,9 +72,17 @@ const ListEditor = (props: IListEditorProps) => {
         <form className={classes.listEditorRoot}>
           {
             list.id ?
-            <TextField id={`${list.id}-title`} value={list.title} label="Title" />
+            <TextField
+              id={`${list.id}-title`}
+              label="Title"
+              value={list.title}
+            />
             :
-            <TextField id={`title`} value={list.title} label="Title" />
+            <TextField
+              id={`title`}
+              label="Title"
+              value={list.title}
+            />
           }
 
           <p>Items</p>
@@ -62,7 +91,11 @@ const ListEditor = (props: IListEditorProps) => {
               list.id ?
                 <Grid key={`${list.id}-item-${i}`} container>
                   <Grid item xs={11}>
-                    <TextField id={`${list.id}-item-${i}`} value={item} />
+                    <TextField
+                      id={`${list.id}-item-${i}`}
+                      onChange={handleItemValueChange}
+                      value={item}
+                    />
                   </Grid>
 
                   <Grid item xs={1}>
@@ -76,7 +109,11 @@ const ListEditor = (props: IListEditorProps) => {
               :
                 <Grid key={`${list.id}-item-${i}`} container>
                   <Grid item xs={11}>
-                    <TextField key={`item-${i}`} value={item} />
+                    <TextField
+                      key={`item-${i}`}
+                      onChange={handleItemValueChange}
+                      value={item}
+                    />
                   </Grid>
 
                   <Grid item xs={1}>

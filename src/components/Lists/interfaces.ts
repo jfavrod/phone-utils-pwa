@@ -1,19 +1,13 @@
+import { IListProps } from '../../services/Lists';
+
 export interface IListEditorProps {
     data?: IListProps;
     cancelAction?(): void;
-    saveAction?(): void;
+    saveAction?(list: IListProps): void;
 }
 
 export interface IListPropsData {
     data: IListProps;
-}
-
-export interface IListProps {
-    createdAt?: number;
-    id?: string;
-    items: string[];
-    modifiedAt?: number;
-    title: string;
 }
 
 export interface IListsProps {
