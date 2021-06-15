@@ -33,6 +33,12 @@ const MainMenu = () => {
           />
 
           <MenuItem
+            path="/lists"
+            onClick={() => setPath('/lists')}
+            value="Lists"
+          />
+
+          <MenuItem
             path="/weather"
             onClick={() => setPath('/weather')}
             value="Weather"
