@@ -26,14 +26,14 @@ const Temp = () => {
 
   return (<Grid container spacing={2}>
     <MenuItem
-      path="/convert"
-      value="Back"
+      path="/"
+      value="Main Menu"
       variant='half'
     />
 
     <MenuItem
-      path="/"
-      value="Main Menu"
+      path="/convert"
+      value="Back"
       variant='half'
     />
 
