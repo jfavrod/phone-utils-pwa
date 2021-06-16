@@ -17,9 +17,8 @@ const Lists = (props: IListsProps) => {
 
   const classes = styles();
 
-  const [ queuedList, setQueuedList ] = useState<IListProps | undefined>();
-
   const [ data, setData ] = useState<IListProps[]>([]);
+  const [ queuedList, setQueuedList ] = useState<IListProps | undefined>();
   const [ showFeedback, setShowFeedback ] = useState(false);
 
   const [ feedbackData, setFeedbackData ] = useState({
@@ -29,14 +28,18 @@ const Lists = (props: IListsProps) => {
 
   const saveError = useCallback((message?: string) => {
     const newFeedback = JSON.parse(JSON.stringify(feedbackData)) as IFeedbackProps;
+
     newFeedback.mesg = `Failed to save list${message ? `: ${message}` : ''}`;
     newFeedback.severity = 'error';
+
     setFeedbackData(newFeedback);
     setShowFeedback(true);
+
   }, [ feedbackData, setFeedbackData, setShowFeedback ]);
 
   const saveListSuccess = useCallback(() => {
     const newFeedback = JSON.parse(JSON.stringify(feedbackData)) as IFeedbackProps;
+
     newFeedback.mesg = 'Successfully saved list.';
     newFeedback.severity = 'success';
 
@@ -47,9 +50,10 @@ const Lists = (props: IListsProps) => {
       .then((res) => {
         if (res.data) {
           const idx = res.data.findIndex((lst) => lst.id === queuedList?.id);
+          const copy = JSON.parse(JSON.stringify(res.data[idx]));
 
           if (idx > -1) {
-            setQueuedList(JSON.parse(JSON.stringify(res.data[idx])));
+            setQueuedList(copy);
           }
 
           setData(res.data);
@@ -120,7 +124,6 @@ const Lists = (props: IListsProps) => {
         key={listData.id}
         onClick={() => {
           const copy = JSON.parse(JSON.stringify(listData));
-          console.log('copy', copy);
           setQueuedList(copy);
         }}
       />
