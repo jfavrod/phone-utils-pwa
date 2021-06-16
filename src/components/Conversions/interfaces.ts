@@ -4,6 +4,4 @@ export interface IConverionInputProps {
     onValueChange(newValue: number): void;
 }
 
-export interface IConversionMenuProps {
-    navigate(path: string): void;
-}
+export interface IConversionMenuProps {}

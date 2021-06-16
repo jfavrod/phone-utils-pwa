@@ -7,14 +7,19 @@ import style from './styles';
 
 import { IMenuItemProps } from './interfaces';
 
+/**
+ * Extension of GridItem; either full (12) width or half (6).
+ */
 const MenuItem = (props: IMenuItemProps) => {
-  const { path, onClick: setPath, value, variant: varient } = props;
+  const { path, value, variant } = props;
   const classes = style();
 
+  if (props.hide) return null;
+
   return (
-    <Grid item xs={ (!varient || varient === 'full') ? 12 : 6}>
+    <Grid item xs={ (!variant || variant === 'full') ? 12 : 6}>
       <Paper className={classes.paper}>
-        <Button onClick={() => setPath(path)}>
+        <Button>
           <Link className={classes.btnlink} to={path}>{ value }</Link>
         </Button>
       </Paper>

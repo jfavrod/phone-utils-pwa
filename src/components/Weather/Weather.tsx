@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 
 import { Grid } from '@material-ui/core';
 
+import Condition from './Condition';
+import Humidity from './Humidity';
+import MenuItem from '../MainMenu/MenuItem';
+import Thermometer from './Thermometer';
+
 import ServiceFactory from '../../context/ServiceFactory';
 import { ICurrentConditions } from '../../services/Weather/interfaces';
-import Thermometer from './Thermometer';
-import Condition from './Condition';
 import { IWeather } from '../../services/Weather/OpenWeatherAPI/interfaces';
-import Humidity from './Humidity';
 
 const Weather = () => {
   const [ currentWeather, setCurrentWeather ] = useState<ICurrentConditions>();
@@ -30,6 +32,13 @@ const Weather = () => {
   }, [setCurrentWeather]);
 
   return(<>
+    <Grid container spacing={2}>
+      <MenuItem
+        path='/'
+        value="Main Menu"
+      />
+    </Grid>
+
     <Grid container>
       <Thermometer label='Current Temp.' temp={ctemp} />
 

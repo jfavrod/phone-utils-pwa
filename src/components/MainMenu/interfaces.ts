@@ -1,6 +1,6 @@
 export interface IMenuItemProps {
+    hide?: boolean;
     path: string;
-    onClick(path: string): void;
     value: string;
     variant?: 'full' | 'half';
 }

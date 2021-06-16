@@ -19,9 +19,7 @@ export interface IListPropsData {
     data: IListProps;
 }
 
-export interface IListsProps {
-    navigate(path: string): void;
-}
+export interface IListsProps {}
 
 export interface IListetteProps {
     children?: React.ReactNode;

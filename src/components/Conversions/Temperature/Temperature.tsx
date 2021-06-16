@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 
 import { Grid } from '@material-ui/core';
 
+import MenuItem from '../../MainMenu/MenuItem';
 import TempInput from './TempInput';
+
 import styles from '../styles';
 
 const Temp = () => {
@@ -22,7 +24,19 @@ const Temp = () => {
     }
   };
 
-  return (
+  return (<Grid container spacing={2}>
+    <MenuItem
+      path="/convert"
+      value="Back"
+      variant='half'
+    />
+
+    <MenuItem
+      path="/"
+      value="Main Menu"
+      variant='half'
+    />
+
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={1} />
@@ -30,7 +44,7 @@ const Temp = () => {
         <TempInput corf="f" setTmp={(temp) => setTemps('f', temp)} temp={ftemp} />
       </Grid>
     </div>
-  );
+  </Grid>);
 };
 
 export default Temp;

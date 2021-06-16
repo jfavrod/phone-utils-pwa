@@ -19,8 +19,6 @@ import styles from './styles';
 import ServiceFactory from '../../context/ServiceFactory';
 
 const Lists = (props: IListsProps) => {
-  const { navigate } = props;
-
   const classes = styles();
 
   const [ data, setData ] = useState<IListProps[] | undefined>(undefined);
@@ -194,7 +192,6 @@ const Lists = (props: IListsProps) => {
 
       <MenuItem
         path="/"
-        onClick={() => navigate('/')}
         value="Main Menu"
         variant='half'
       />

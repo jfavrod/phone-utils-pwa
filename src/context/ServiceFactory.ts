@@ -6,8 +6,8 @@ import ListsService, { IListsService } from '../services/Lists';
 import { IListsServiceConfig } from '../services/Lists/interfaces';
 
 export default class ServiceFactory {
-    private static weatherSvc: IWeatherService;
     private static listsSvc: IListsService;
+    private static weatherSvc: IWeatherService;
 
     public static getListsSvc() {
         if (!ServiceFactory.listsSvc) {
