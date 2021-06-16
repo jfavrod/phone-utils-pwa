@@ -7,7 +7,7 @@ import React, {
 
 import { Button, Grid, Paper } from '@material-ui/core';
 
-import ListsService, { IListProps } from '../../services/Lists';
+import { IListProps } from '../../services/Lists';
 import { IFeedbackProps, IListsProps } from './interfaces';
 
 import Feedback from './Feedback';
@@ -16,6 +16,7 @@ import Listette from './Listette';
 import MenuItem from '../MainMenu/MenuItem';
 
 import styles from './styles';
+import ServiceFactory from '../../context/ServiceFactory';
 
 const Lists = (props: IListsProps) => {
   const { navigate } = props;
@@ -57,7 +58,7 @@ const Lists = (props: IListsProps) => {
     setFeedbackData(newFeedback);
     setShowFeedback(true);
 
-    (new ListsService()).getAll()
+    ServiceFactory.getListsSvc().getAll()
       .then((res) => {
         if (res.data) {
           const idx = res.data.findIndex((lst) => lst.id === queuedList?.id);
@@ -72,7 +73,7 @@ const Lists = (props: IListsProps) => {
   }, [feedbackData, queuedList, setFeedbackData, setShowFeedback]);
 
   const saveListStart = useCallback((list: IListProps) => {
-    const func = list.id ? (new ListsService()).update : (new ListsService()).add;
+    const func = list.id ? ServiceFactory.getListsSvc().update : ServiceFactory.getListsSvc().add;
 
     func(list)
       .then((res) => {
@@ -129,7 +130,7 @@ const Lists = (props: IListsProps) => {
           setQueuedList(undefined)
         }}
         deleteAction={(id) => {
-          (new ListsService()).delete(id)
+          ServiceFactory.getListsSvc().delete(id)
             .then((res) => {
               if (res.success) {
                 setFeedbackData({
@@ -177,7 +178,7 @@ const Lists = (props: IListsProps) => {
 
   useEffect(() => {
     if (!data) {
-      (new ListsService()).getAll()
+      ServiceFactory.getListsSvc().getAll()
         .then((res) => {
           if (res.data) {
             setData(res.data);

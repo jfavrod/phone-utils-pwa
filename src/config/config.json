@@ -1,5 +1,11 @@
 {
     "services": {
+        "Lists": {
+            "urls": {
+                "dev": "//localhost:5000/lists",
+                "prod": "//lists-api-8675309.herokuapp.com/lists"
+            }
+        },
         "OpenWeatherAPI": {
             "urls": {
                 "prod": "//api.openweathermap.org/data/2.5",

@@ -1,8 +1,23 @@
-import { IListProps, IListsService, IListsServiceResponse } from './interfaces';
+import { 
+    IListProps,
+    IListsService,
+    IListsServiceResponse,
+} from './interfaces';
 
 export default class ListsService implements IListsService {
+    private url: string;
+
+    public constructor(url: string) {
+        this.url = url;
+
+        this.add = this.add.bind(this);
+        this.delete = this.delete.bind(this);
+        this.getAll = this.getAll.bind(this);
+        this.update = this.update.bind(this);
+    }
+
     public add(list: IListProps): Promise<IListsServiceResponse> {
-        return fetch('http://localhost:5000/lists', {
+        return fetch(this.url, {
             body: JSON.stringify(list),
             headers: {
                 'content-type': 'application/json',
@@ -34,7 +49,7 @@ export default class ListsService implements IListsService {
     }
 
     public delete(id: string): Promise<IListsServiceResponse> {
-        return fetch(`http://localhost:5000/lists/${id}`, {
+        return fetch(`${this.url}/${id}`, {
             method: 'DELETE',
         })
         .then((res) => {
@@ -60,7 +75,7 @@ export default class ListsService implements IListsService {
     }
 
     public getAll(): Promise<IListsServiceResponse> {
-        return fetch('http://localhost:5000/lists')
+        return fetch(this.url)
             .then((res) => res.json())
             .then((data) => ({
                 data,
@@ -74,7 +89,7 @@ export default class ListsService implements IListsService {
     }
 
     public update(list: IListProps): Promise<IListsServiceResponse> {
-        return fetch('http://localhost:5000/lists', {
+        return fetch(this.url, {
             body: JSON.stringify(list),
             headers: {
                 'content-type': 'application/json'

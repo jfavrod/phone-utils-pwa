@@ -15,7 +15,7 @@ const Weather = () => {
   const ctemp = currentWeather?.ctemp || 0;
 
   useEffect(() => {
-    const weatherSvc = new ServiceFactory().getWeatherSvc();
+    const weatherSvc = ServiceFactory.getWeatherSvc();
 
     navigator.geolocation.getCurrentPosition((geopos) => {
       weatherSvc.getCurrentConditions({
