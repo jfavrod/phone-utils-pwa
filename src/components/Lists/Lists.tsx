@@ -1,4 +1,9 @@
-import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
 import { Button, Grid, Paper } from '@material-ui/core';
 
@@ -17,7 +22,7 @@ const Lists = (props: IListsProps) => {
 
   const classes = styles();
 
-  const [ data, setData ] = useState<IListProps[]>([]);
+  const [ data, setData ] = useState<IListProps[] | undefined>(undefined);
   const [ queuedList, setQueuedList ] = useState<IListProps | undefined>();
   const [ showFeedback, setShowFeedback ] = useState(false);
 
@@ -26,11 +31,17 @@ const Lists = (props: IListsProps) => {
     severity: 'info' as IFeedbackProps["severity"],
   });
 
-  const saveError = useCallback((message?: string) => {
+  const saveError = useCallback((message?: string, warn?: boolean) => {
     const newFeedback = JSON.parse(JSON.stringify(feedbackData)) as IFeedbackProps;
 
-    newFeedback.mesg = `Failed to save list${message ? `: ${message}` : ''}`;
-    newFeedback.severity = 'error';
+    if (!warn) {
+      newFeedback.mesg = `Failed to save list${message ? `: ${message}` : ''}`;
+      newFeedback.severity = 'error';
+    }
+    else {
+      newFeedback.mesg = `Something went wrong saving the list${message ? `: ${message}` : '.'}`;
+      newFeedback.severity = 'warning';
+    }
 
     setFeedbackData(newFeedback);
     setShowFeedback(true);
@@ -50,10 +61,9 @@ const Lists = (props: IListsProps) => {
       .then((res) => {
         if (res.data) {
           const idx = res.data.findIndex((lst) => lst.id === queuedList?.id);
-          const copy = JSON.parse(JSON.stringify(res.data[idx]));
 
           if (idx > -1) {
-            setQueuedList(copy);
+            setQueuedList(JSON.parse(JSON.stringify(res.data[idx])));
           }
 
           setData(res.data);
@@ -62,16 +72,22 @@ const Lists = (props: IListsProps) => {
   }, [feedbackData, queuedList, setFeedbackData, setShowFeedback]);
 
   const saveListStart = useCallback((list: IListProps) => {
-    (new ListsService()).update(list)
+    const func = list.id ? (new ListsService()).update : (new ListsService()).add;
+
+    func(list)
       .then((res) => {
         if (res.success) {
+          if (!list.id) { setQueuedList(res.data?.pop()); }
           saveListSuccess();
         }
         else if (res.error) {
-          saveError(res.message || '');
+          saveError(res.message);
+        }
+        else if (!res.error) {
+          saveError(res.message, true);
         }
       })
-      .catch((err) => saveError(err));
+      .catch((err: Error) => saveError(err.message));
   }, [ saveListSuccess, saveError ]);
 
   const addBtn = useMemo(() => (
@@ -112,13 +128,42 @@ const Lists = (props: IListsProps) => {
         cancelAction={() => {
           setQueuedList(undefined)
         }}
+        deleteAction={(id) => {
+          (new ListsService()).delete(id)
+            .then((res) => {
+              if (res.success) {
+                setFeedbackData({
+                  mesg: 'Successfully deleted list.',
+                  severity: 'success',
+                });
+
+                setQueuedList(undefined);
+                setData(undefined);
+              }
+              else {
+                setFeedbackData({
+                  mesg: res.message || 'Something went wrong.',
+                  severity: 'warning',
+                });
+              }
+
+              setShowFeedback(true);
+            }).catch((err) => {
+              setFeedbackData({
+                mesg: err.message,
+                severity: 'error',
+              });
+
+              setShowFeedback(true);
+            });
+        }}
         data={queuedList}
         saveAction={saveListStart}
       />
   ), [ queuedList, saveListStart, setQueuedList ]);
 
   const listetts = useMemo(() => (
-    data.map((listData) => (
+    (data || []).map((listData) => (
       <Listette
         data={listData}
         key={listData.id}
@@ -131,13 +176,15 @@ const Lists = (props: IListsProps) => {
   )), [data, setQueuedList]);
 
   useEffect(() => {
-    (new ListsService()).getAll()
-      .then((res) => {
-        if (res.data) {
-          setData(res.data);
-        }
-      });
-  }, [setData]);
+    if (!data) {
+      (new ListsService()).getAll()
+        .then((res) => {
+          if (res.data) {
+            setData(res.data);
+          }
+        });
+    }
+  }, [data, setData]);
 
   return (<>
     { feedback }

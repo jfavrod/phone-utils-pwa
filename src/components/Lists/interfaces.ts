@@ -11,6 +11,7 @@ export interface IFeedbackProps {
 export interface IListEditorProps {
     data?: IListProps;
     cancelAction?(): void;
+    deleteAction?(id: string): void;
     saveAction?(list: IListProps): void;
 }
 

@@ -7,6 +7,7 @@ export interface IListProps {
 }
 
 export interface IListsService {
+    add(list: IListProps): Promise<IListsServiceResponse>;
     getAll(): Promise<IListsServiceResponse>;
     update(list: IListProps): Promise<IListsServiceResponse>;
 }

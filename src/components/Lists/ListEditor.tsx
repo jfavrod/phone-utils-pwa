@@ -1,4 +1,10 @@
-import React, { useEffect, useState, MouseEvent, ChangeEvent } from 'react';
+import React, {
+  useEffect,
+  useState,
+  useMemo,
+  MouseEvent,
+  ChangeEvent
+} from 'react';
 
 import {
   Button,
@@ -6,6 +12,8 @@ import {
   Paper,
   TextField,
 } from '@material-ui/core';
+
+import DeleteIcon from '@material-ui/icons/Delete';
 
 import { IListProps } from '../../services/Lists';
 import { IListEditorProps } from './interfaces';
@@ -66,6 +74,22 @@ const ListEditor = (props: IListEditorProps) => {
     setList(newList);
   };
 
+  const deleteButton = useMemo(() => (
+    <Grid item xs={4}>
+      <Button
+        color='secondary'
+        onClick={() => {
+          if (props.deleteAction) {
+            props.deleteAction(list.id as string);
+          }
+        }}
+        variant='outlined'
+      >
+        Delete
+      </Button>
+    </Grid>
+  ), [ list, props ]);
+
   useEffect(() => {
     if (props.data) setList(
       JSON.parse(JSON.stringify(props.data)),
@@ -75,7 +99,7 @@ const ListEditor = (props: IListEditorProps) => {
   return (
     <Grid item xs={12}>
       <Paper className={classes.paper}>
-        <form className={classes.listEditorRoot}>
+        <form>
           <TextField
             id={`${list.id}-title`}
             label="Title"
@@ -87,7 +111,7 @@ const ListEditor = (props: IListEditorProps) => {
           { 
             list.items.map((item, i) => (
               <Grid key={`item-${i}`} container>
-                <Grid item xs={11}>
+                <Grid item xs={10}>
                   <TextField
                     id={`item-${i}`}
                     onChange={handleItemValueChange}
@@ -96,11 +120,12 @@ const ListEditor = (props: IListEditorProps) => {
                 </Grid>
 
                 <Grid item xs={1}>
-                  <TextField
+                  <Button
                     id={`item-${i}`}
                     onClick={handleRemoveItem}
-                    value="x"
-                  />
+                  >
+                    <DeleteIcon fontSize="small" />
+                  </Button>
                 </Grid>
               </Grid>
             ))
@@ -115,9 +140,9 @@ const ListEditor = (props: IListEditorProps) => {
           </Button>
 
           <Grid container>
-            <Grid item xs={2} />
+            { !list.id ? <Grid item xs={2} /> : deleteButton }
 
-            <Grid item xs={5}>
+            <Grid item xs={4}>
               <Button
                 color='primary'
                 onClick={handleSaveAction}
@@ -127,7 +152,7 @@ const ListEditor = (props: IListEditorProps) => {
               </Button>
             </Grid>
 
-            <Grid item xs={5}>
+            <Grid item xs={4}>
               <Button
                 color='default'
                 onClick={() => {
@@ -137,7 +162,7 @@ const ListEditor = (props: IListEditorProps) => {
                 }}
                 variant='outlined'
               >
-                Cancel
+                { !list.id ? 'Cancel' : 'Close' }
               </Button>
             </Grid>
           </Grid>
