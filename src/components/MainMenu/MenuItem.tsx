@@ -9,6 +9,14 @@ import { IMenuItemProps } from './interfaces';
 
 /**
  * Extension of GridItem; either full (12) width or half (6).
+ *
+ * If path is specified, the MenuItem will be used (in conjunction
+ * with ReactRouter) for navigation.
+ *
+ * If onClick is specified, the MenuItem will be a button who's action
+ * will be the onClick method.
+ *
+ * If both path and onClick are specified, path is preferred.
  */
 const MenuItem = (props: IMenuItemProps) => {
   const { onClick, path, value, variant } = props;
