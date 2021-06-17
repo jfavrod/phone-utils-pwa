@@ -1,6 +1,10 @@
+import { MouseEvent } from "react";
+
 export interface IMenuItemProps {
+    disabled?: boolean;
     hide?: boolean;
-    path: string;
+    onClick?(event: MouseEvent): void;
+    path?: string;
     value: string;
     variant?: 'full' | 'half';
 }

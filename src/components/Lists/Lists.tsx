@@ -5,7 +5,7 @@ import React, {
   useState,
 } from 'react';
 
-import { Button, Grid, Paper } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 
 import { IListProps } from '../../services/Lists';
 import { IFeedbackProps, IListsProps } from './interfaces';
@@ -15,12 +15,9 @@ import ListEditor from './ListEditor';
 import Listette from './Listette';
 import MenuItem from '../MainMenu/MenuItem';
 
-import styles from './styles';
 import ServiceFactory from '../../context/ServiceFactory';
 
 const Lists = (props: IListsProps) => {
-  const classes = styles();
-
   const [ data, setData ] = useState<IListProps[] | undefined>(undefined);
   const [ queuedList, setQueuedList ] = useState<IListProps | undefined>();
   const [ showFeedback, setShowFeedback ] = useState(false);
@@ -90,22 +87,19 @@ const Lists = (props: IListsProps) => {
   }, [ saveListSuccess, saveError ]);
 
   const addBtn = useMemo(() => (
-    <Grid item xs={6}>
-      <Paper className={classes.paper}>
-        <Button
-          disabled={queuedList !== undefined}
-          onClick={() => {
-            setQueuedList({
-              title: '',
-              items: [],
-            });
-          }}
-        >
-          Add List
-        </Button>
-      </Paper>
-    </Grid>
-  ), [ classes, queuedList ]);
+    <MenuItem
+      disabled={queuedList !== undefined}
+      onClick={() => {
+        console.log('add list')
+        setQueuedList({
+          title: '',
+          items: [],
+        });
+      }}
+      value="Add List"
+      variant="half"
+    />
+  ), [ queuedList ]);
 
   const feedback = useMemo(() => (
     <Feedback
@@ -188,13 +182,13 @@ const Lists = (props: IListsProps) => {
   return (<>
     { feedback }
     <Grid container spacing={2}>
-      { addBtn }
-
       <MenuItem
         path="/"
         value="Main Menu"
         variant='half'
       />
+
+      { addBtn }
 
       { queuedList ? listEditor : listetts }
     </Grid>
