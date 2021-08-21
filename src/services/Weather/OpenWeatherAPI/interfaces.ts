@@ -52,7 +52,8 @@ export interface IWeather {
     description: 'clear sky'     | 'few clouds'  | 'scattered clouds' |
                  'broken clouds' | 'shower rain' | 'rain' |
                  'thunderstorm'  | 'snow'        | 'mist' |
-                 'light rain'    | 'drizzle'     | 'freezing rain';
+                 'light rain'    | 'drizzle'     | 'freezing rain' |
+                 'overcast clouds';
     icon: string;
     id: number;
     main: string;
