@@ -10,6 +10,7 @@ import {
 
 import Lists from '../Lists';
 import MenuItem from './MenuItem';
+import Calendar from '../Calendar/Calendar'
 import Conversions from '../Conversions';
 import Temperature from '../Conversions/Temperature';
 import Weather from '../Weather';
@@ -40,6 +41,9 @@ const MainMenu = () => {
                 value="Weather"
               />
             </Grid>
+          </Route>
+          <Route exact path="/calendar">
+            <Calendar />
           </Route>
 
           <Route exact path="/convert">

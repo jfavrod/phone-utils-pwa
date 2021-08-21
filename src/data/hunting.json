@@ -1,0 +1,142 @@
+{
+    "states": {
+        "south-dakota": {
+            "Cottontail Rabbit": {
+                "daily-limit": 10,
+                "license-requirements": {
+                    "nonresidents": "Nonresident Small Game, Nonresident Youth Small Game",
+                    "residents": "Small Game, any Combination license, Youth Small Game, 1-Day Small Game"
+                },
+                "open-area": "statewide",
+                "open-hours-end": "sunset",
+                "open-hours-start": "sunrise",
+                "possession-limit": 30,
+                "seasons": {
+                    "2021": [
+                        {
+                            "start": "Sept. 1, 2021",
+                            "end": "Feb. 28, 2022"
+                        }
+                    ],
+                    "2022": [
+                        {
+                            "start": "Sept. 1, 2022",
+                            "end": "Feb. 28, 2023"
+                        }
+                    ]
+                },
+                "state-info": {
+                    "blurb": "A favorite game animal across America, especially for young hunters, cottontails are found throughout South Dakota. They thrive in a variety of areas, including brushy growth, shelterbelts and forest edges; they typically avoid large open areas. Cottontails are solitary animals that feed in the early morning and at sunset. They do not hibernate and remain active in the winter. Winter foods include stems, buds, and bark of woody vegetation. Some dedicated hunters will use specially trained dogs such as beagles to hunt cottontails. Although cottontails are excellent table fare, hunters must be cautious in handling carcasses. Cottontails are known to carry tularemia and Rocky Mountain spotted fever, both transmittable to humans. The Eastern Cottontail is common to South Dakota, but it isn't the only species found within the state. Mountain Cottontail and Desert Cottontail have been found in western parts of the state."
+                }
+            },
+            "Coyote": {
+                "seasons": {
+                    "2021": [
+                        {
+                            "start": "Jan. 1, 2021",
+                            "end": "Dec. 31, 2021"
+                        }
+                    ],
+                    "2022": [
+                        {
+                            "start": "Jan. 1, 2022",
+                            "end": "Dec. 31, 2022"
+                        }
+                    ]
+                },
+                "state-info": {
+                    "blurb": "Coyotes are located throughout the state in almost every habitat. Coyotes tend to be secretive and are most active from dusk to dawn. They often rest during the day and only move when disturbed. They remain active throughout the winter. The western two-thirds of South Dakota is where most of the hunting occurs. These areas offer river drainages and larger private holdings - terrain well-suited for coyote hunting. There are many large tracts of public land open to hunting in the western half South Dakota.",
+                    "Custer State Park Free Access Permits": "The Custer State Park coyote hunting season is open December 26, 2020 - April 30, 2021. Free access permits are no longer required. No hunting allowed within 200 yards of any public access road or building in Custer State Park. A person must have their applicable License and Access Permit with them while hunting. Hunters are responsible for leaving the property they are hunting in the same condition as they found it.",
+                    "Restrictions": "There are no restrictions on caliber of rifles and/or handguns. National Grasslands in western South Dakota, managed by the U.S. Forest Service, are popular hunting destinations. If this is your destination, please contact the grassland offices for information on travel restrictions. Native American Tribal lands also host coyote hunting opportunities. State licenses are not valid on tribal trust lands, unless authorized by the tribal council. Individual tribes may require a tribal permit to hunt on their lands. Contact the individual tribes to find out what licenses they offer and the cost. Not all the land inside the South Dakota reservations is under tribal jurisdiction. If you hunt on private land deeded to non-Indians you must have a state license."
+                }
+            },
+            "Crow": {
+                "open-area": "statewide",
+                "seasons": {
+                    "2021": [
+                        {
+                            "end": "Oct. 31, 2021",
+                            "start": "Sept. 1, 2021"
+                        },
+                        {
+                            "end": "Apr. 30, 2021",
+                            "start": "March. 1, 2021"
+                        }
+                    ],
+                    "2022": [
+                        {
+                            "end": "Oct. 31, 2022",
+                            "start": "Sept. 1, 2022"
+                        },
+                        {
+                            "end": "Apr. 30, 2022",
+                            "start": "March. 1, 2022"
+                        }
+                    ]
+                },
+                "state-info": {
+                    "blurb": "American crows are found throughout South Dakota. They use a variety of habitats, especially open country and small woodlands. Crows gather in large, traditional roosts, and can become a nuisance. Their diet is diverse. The birds usually feed on the ground. Crows are sometimes hunted with crow and/or owl decoys. Electronic calls are legal for crow hunting. These birds are highly intelligent and can be difficult to coax into gun range."
+                }
+            },
+            "Raccoon": {
+                "open-area": "statewide",
+                "seasons": {
+                    "2021": [
+                        {
+                            "end": "Oct. 31, 2021",
+                            "start": "Sept. 1, 2021"
+                        },
+                        {
+                            "end": "Apr. 30, 2021",
+                            "start": "March. 1, 2021"
+                        }
+                    ],
+                    "2022": [
+                        {
+                            "end": "Oct. 31, 2022",
+                            "start": "Sept. 1, 2022"
+                        },
+                        {
+                            "end": "Apr. 30, 2022",
+                            "start": "March. 1, 2022"
+                        }
+                    ]
+                }
+            },
+            "Sandhill Crane": {
+                "seasons": {
+                    "2021": [
+                        {
+                            "start": "Sept. 25, 2021",
+                            "end": "Nov. 21, 2021"
+                        }
+                    ]
+                }
+            },
+            "Tree Squirrel": {
+                "seasons": {
+                    "2021": [
+                        {
+                            "end": "Feb. 28, 2022",
+                            "start": "Sept. 1, 2021"
+                        }
+                    ],
+                    "2022": [
+                        {
+                            "end": "Feb. 28, 2023",
+                            "start": "Sept. 1, 2022"
+                        }
+                    ]
+                }
+            },
+            "Turkey": {
+                "2021": [
+                    {
+                        "start": "Nov. 1, 2021",
+                        "end": "Jan. 31, 2022"
+                    }
+                ]
+            }
+        }
+    }
+}
