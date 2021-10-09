@@ -1,7 +1,7 @@
 import { Grid } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 
-import MenuButton from '../common/MenuButton';
+import MenuButton from '../Common/MenuButton';
 import Condition from './Condition';
 import Humidity from './Humidity';
 import MenuItem from '../MainMenu/MenuItem';

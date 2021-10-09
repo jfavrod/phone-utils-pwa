@@ -3,6 +3,7 @@ import Cal, { CalendarTileProperties } from 'react-calendar';
 
 import 'react-calendar/dist/Calendar.css';
 import hunting_data from '../../data/hunting.json';
+import { MenuItem } from '@material-ui/core';
 
 type AnimalName = 'Cottontail Rabbit' | 'Coyote' | 'Crow' | 'Raccoon' | 'Sandhill Crane' | 'Tree Squirrel' | 'Turkey';
 type UsStates = 'south-dakota'
@@ -66,12 +67,12 @@ const Calendar = () => {
                 if (caltime >= starttime && caltime <= endtime) {
                   const normAnimalName = animalName.toLowerCase();
                   if (normAnimalName.includes('rabbit')) res.push(<>🐇</>);
-                  else if (normAnimalName.includes('coyote')) res.push(<><img alt="crow" width="15px" src="./calendar-icons/wolf-icon.png" /></>);
+                  else if (normAnimalName.includes('coyote')) res.push(<><img alt="coyote" width="15px" src="/calendar-icons/wolf-icon.png" /></>);
                   else if (normAnimalName.includes('raccoon')) res.push(<>🦝</>);
                   else if (normAnimalName.includes('turkey')) res.push(<>🦃</>);
-                  else if (normAnimalName.includes('crow')) res.push(<><img alt="crow" width="15px" src="./calendar-icons/crow-icon.png" /></>);
+                  else if (normAnimalName.includes('crow')) res.push(<><img alt="crow" width="15px" src="/calendar-icons/crow-icon.png" /></>);
                   else if (normAnimalName.includes('crane')) res.push(<><img alt="sandhill-crane" width="15px" src="https://img.icons8.com/material-rounded/50/000000/crane-bird.png"/></>)
-                  else if (normAnimalName.includes('squirrel')) res.push(<><img alt="squirrel" width="15px" src="./calendar-icons/squirrel-icon.png" /></>);
+                  else if (normAnimalName.includes('squirrel')) res.push(<><img alt="squirrel" width="15px" src="/calendar-icons/squirrel-icon.png" /></>);
                   else if (normAnimalName.includes('beaver')) res.push(<>🦫</>);
                   else res.push(<>🥆</>);
                 }
@@ -91,13 +92,6 @@ const Calendar = () => {
         calendarType="US"
         onClickDay={handleOnDayClick}
         tileContent={(calstuff) => <>{handleHuntingData(calstuff, huntingData)}</>}
-        // tileContent={(calstuff) => {
-        //   console.log(calstuff.date)
-        //   if (calstuff.date.getDay() == (new Date()).getDay()) {
-        //     return <>🥆</>
-        //   }
-        //   return <></>
-        // }}
       />
       <p>Icons</p>
       <p>

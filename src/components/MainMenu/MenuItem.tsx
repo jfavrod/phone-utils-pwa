@@ -18,7 +18,7 @@ import { IMenuItemProps } from './interfaces';
  *
  * If both path and onClick are specified, path is preferred.
  */
-const MenuItem = (props: IMenuItemProps) => {
+export const MenuItem = (props: IMenuItemProps) => {
   const { onClick, path, value, variant } = props;
   const classes = style();
 
