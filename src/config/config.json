@@ -8,8 +8,8 @@
         },
         "OpenWeatherAPI": {
             "urls": {
-                "prod": "//api.openweathermap.org/data/2.5",
-                "dev": "//localhost:3001"
+                "dev": "//localhost:3001",
+                "prod": "//api.openweathermap.org/data/2.5"
             }
         }
     }

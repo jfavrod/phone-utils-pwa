@@ -51,9 +51,9 @@ const ListEditor = (props: IListEditorProps) => {
     setList(newList);
   };
 
-  const handleRemoveItem = (event: MouseEvent) => {
+  const handleRemoveItem = (id: string) => {
     const newList = JSON.parse(JSON.stringify(list)) as IListProps;
-    const idx = getItemIndex((event.target as HTMLElement).id);
+    const idx = getItemIndex(id);
     newList.items.splice(idx, 1);
     setList(newList);
   };
@@ -121,8 +121,7 @@ const ListEditor = (props: IListEditorProps) => {
 
                 <Grid item xs={1}>
                   <Button
-                    id={`item-${i}`}
-                    onClick={handleRemoveItem}
+                    onClick={() => handleRemoveItem(`item-${i}`)}
                   >
                     <DeleteIcon fontSize="small" />
                   </Button>

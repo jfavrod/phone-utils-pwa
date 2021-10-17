@@ -15,6 +15,8 @@ const Condition = (props: IConditionProps) => {
       case 'broken clouds':
       case 'few clouds':
         return './weather-icons/few-clouds.png';
+      case 'overcast clouds':
+        return './weather-icons/overcast.png';
       case 'thunderstorm':
         return './weather-icons/thunderstorms.png';
       case 'scattered clouds':

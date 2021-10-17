@@ -13,6 +13,7 @@ import {
 
 import StarkHamlet, { IToken } from '../services/IAMService/StarkHamlet';
 import { OpenWeatherAPI } from '../services/Weather/OpenWeatherAPI';
+import { WeatherTesting } from '../services/Weather/WeatherTesting';
 
 export default class ServiceFactory {
     private static cookieSvc: ICookieService;
@@ -49,12 +50,17 @@ export default class ServiceFactory {
 
     public static getWeatherSvc(): IWeatherService {
         if (!ServiceFactory.weatherSvc) {
-            const conf = Config.getServiceConfig('OpenWeatherAPI') as IOpenWeatherAPIConfig;
+            if (window.location.hostname === 'localhost') {
+                ServiceFactory.weatherSvc = new WeatherTesting();
+            }
+            else {
+                const conf = Config.getServiceConfig('OpenWeatherAPI') as IOpenWeatherAPIConfig;
 
-            ServiceFactory.weatherSvc = new OpenWeatherAPI(
-                '2433081da14f153d81ad25fc517485f8',
-                Config.getEnv() === 'dev' ? conf.urls.dev : conf.urls.prod,
-            );
+                ServiceFactory.weatherSvc = new OpenWeatherAPI(
+                    '2433081da14f153d81ad25fc517485f8',
+                    Config.getEnv() === 'dev' ? conf.urls.dev : conf.urls.prod,
+                );
+            }
         }
 
         return ServiceFactory.weatherSvc;
