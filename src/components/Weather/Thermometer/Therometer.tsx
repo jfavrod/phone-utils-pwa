@@ -7,6 +7,18 @@ import { IThermometerProps } from './interfaces';
 const Thermometer = (props: IThermometerProps) => {
   const { label, temp, units, variant } = props;
 
+  const convertToC = (f: number) => (f - 32) * (5/9)
+  const percent = (c: number) => {
+    // If 40 or above, max out.
+    if (c >= 40) return 1
+    // If -25 or below, hit bottom.
+    else if (c <= -25) return 0
+    // If below 0...
+    else if (c <= 0) return (c + 25) / (80)
+    // If above 0...
+    else return c / 40
+  };
+
   return (
     <Grid item xs={ (!variant || variant === 'full') ? 12 : 6}>
       <Paper>
@@ -31,7 +43,7 @@ const Thermometer = (props: IThermometerProps) => {
           needleBaseColor="#ff3b00"
           needleColor="#ff3b00"
           nrOfLevels={11}
-          percent={temp / ( units === 'f' ? 110 : 40) }
+          percent={ percent(units === 'f' ? convertToC(temp) : temp) }
           textColor="black"
         />
       </Paper>
