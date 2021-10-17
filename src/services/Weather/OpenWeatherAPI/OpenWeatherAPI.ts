@@ -43,7 +43,7 @@ export default class OpenWeatherAPI implements IWeatherService {
             console.log('data', data);
         }
         catch (err) {
-            console.log(`error, ${this.className}.getCurrentConditions(${place}) ${err.message}`);
+            console.log(`error, ${this.className}.getCurrentConditions(${place}) ${(err as Error).message}`);
         }
 
         return cc;
